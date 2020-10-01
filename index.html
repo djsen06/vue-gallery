@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <title>Document</title>
+</head>
+<body class="bg-gray-300">
+    <div id="app">
+        <div class="text-2xl lg:text-3xl bg-orange-300 text-center mb-4 py-1 ttl shadow">Museum Gallery</div>
+        <div v-if="loading" class="p-4 text-xl text-gray-700 text-center">Loading...</div>
+        <div v-else>
+        <template v-if="title">
+        <template v-if="isPublicDomain" class="p-2 max-w-lg mx-auto">
+            <div class="flex flex-col shadow-xl p-4 bg-white rounded w-5/6 mx-auto justify-center items-center">
+                <div class="font-light py-1 text-2xl text-yellow-700">{{department}}</div>
+                <div id="lb">
+                    <a :href="primaryImage">
+                        <img :src="primaryImageSmall" class="p-2" @click="lightGallery(document.getElementById('lb'),{counter:false})">
+                    </a>
+                </div>
+                <div class="text-indigo-500 px-2 border-b-2 font-light">
+                    {{title}}
+                </div>
+                <div v-if="artistDisplayName" class="font-semibold pt-2 text-gray-700 ">
+                    Artist: {{artistDisplayName}}
+                </div>
+            </div>
+            <div class="p-4 my-4 flex flex-col shadow-xl bg-white rounded w-5/6 mx-auto text-gray-700 ttl">
+            <div v-if="objectDate" class="">
+                <span class="text-orange-500">Date</span> : {{objectDate}}
+            </div>
+            <div v-if="period" >
+                <span class="text-orange-500">Period</span> : {{period}}
+            </div>
+            <div v-if="classification">
+                <span class="text-orange-500">Classification</span> : {{classification}}
+            </div>
+            <div v-if="medium">
+                <span class="text-orange-500">Medium</span> : {{medium}}
+            </div>
+            <div v-if="country">
+                <span class="text-orange-500">Country</span> : {{country}}
+            </div>
+            <div v-if="culture">
+                <span class="text-orange-500">Culture</span> : {{culture}}
+            </div>
+            <div v-if="objectURL" class="py-2 text-sm text-blue-500 border-t-2 mt-2">
+                <a :href="objectURL">Know more</a>
+            </div>
+            </div>
+        </template>
+        <div class="flex p-4 shadow-xl bg-white my-2 rounded mx-auto w-5/6 text-red-500" v-else>
+            Object is not in Public Domain
+        </div>
+        <div class="flex justify-between p-2 max-w-lg mx-auto">
+            <button class="py-1 px-2" @click="prev">
+                <span class="material-icons">
+                    arrow_back
+                </span>
+            </button>
+            <button class="py-1 px-2" @click="next">
+                <span class="material-icons">
+                    arrow_forward
+                    </span>
+            </button>
+        </div>
+        </template></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
